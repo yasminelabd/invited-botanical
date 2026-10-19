@@ -1,0 +1,1923 @@
+/* =========================================
+   1. DESIGN SYSTEM
+========================================= */
+
+:root {
+    --ivory: #FAF8F2;
+    --sage: #E8EFE8;
+    --sage-dark: #C8D6C8;
+    --green: #315B4C;
+    --green-deep: #24483C;
+    --terracotta: #D99A62;
+    --ink: #293A32;
+    --muted: #78877D;
+    --line: rgba(49, 91, 76, 0.22);
+
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "DM Sans", Arial, sans-serif;
+}
+
+
+/* =========================================
+   2. RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+::selection {
+    background: var(--green);
+    color: var(--ivory);
+}
+
+
+/* =========================================
+   3. TOP LINE
+========================================= */
+
+.topline {
+    height: 4px;
+    background: var(--terracotta);
+}
+
+
+/* =========================================
+   4. HEADER
+========================================= */
+/* =========================
+HEADER & NAVIGATION
+========================= */
+
+.header {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+padding: 18px 8%;
+display: flex;
+align-items: center;
+justify-content: center;
+background:  var(--green-deep);
+z-index: 1000;
+border-bottom: 1px solid rgba(250, 248, 242, 0.25);
+}
+
+/* Desktop Navigation */
+
+.navbar {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 35px;
+}
+
+.navbar a {
+font-family: "DM Sans", sans-serif;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 1.2px;
+text-transform: uppercase;
+color: var(--ivory);
+text-decoration: none;
+transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+color: var(--terracotta);
+}
+
+/* Remove old logo and date styling from the header */
+
+.header .logo,
+.header .header-date {
+display: none;
+}
+
+/* Menu Button */
+
+.menu-toggle {
+display: none;
+border: 0;
+background: transparent;
+width: 36px;
+height: 36px;
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+
+
+.header {
+    padding: 16px 5%;
+}
+
+.navbar {
+    gap: 25px;
+}
+
+.navbar a {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+.header {
+    padding: 22px 6%;
+    justify-content: flex-end;
+    border-bottom: 1px solid rgba(250, 248, 242, 0.2);
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+    border: 1px solid rgba(250, 248, 242, 0.5);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    background: var(--ivory);
+    transition: 0.3s ease;
+}
+
+.navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 20px;
+    background: var(--green-deep);
+    border-bottom: 1px solid var(--line);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease;
+}
+
+.navbar.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.navbar a {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    color: var(--ivory);
+    font-size: 12px;
+}
+
+
+}
+
+/* =========================================
+   5. HERO SECTION
+========================================= */
+
+.hero {
+    min-height: 690px;
+    height: calc(100svh - 86px);
+    max-height: 900px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: var(--green);
+    color: var(--ivory);
+}
+
+/* Main photograph */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=85");
+
+    background-size: cover;
+    background-position: center 48%;
+    background-repeat: no-repeat;
+
+    transform: scale(1.025);
+}
+
+/* Dark overlay */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(24, 53, 42, 0.66),
+            rgba(36, 65, 52, 0.34) 55%,
+            rgba(24, 53, 42, 0.52)
+        );
+}
+
+/* Decorative frame */
+
+.hero-frame {
+    position: absolute;
+    inset: 24px;
+
+    border: 1px solid rgba(250, 248, 242, 0.45);
+
+    pointer-events: none;
+}
+
+.hero-frame::after {
+    content: "";
+
+    position: absolute;
+    inset: 7px;
+
+    border: 1px solid rgba(250, 248, 242, 0.18);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(760px, 90%);
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    animation: heroReveal 1.1s ease both;
+}
+
+.hero-eyebrow {
+    color: #F1D1AB;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.hero-intro {
+    margin-top: 29px;
+
+    font-family: var(--serif);
+    font-size: 21px;
+    font-style: italic;
+
+    color: #F6EDE1;
+}
+
+.hero h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 27px 0 29px;
+
+    font-family: var(--serif);
+    font-weight: 400;
+
+    font-size: clamp(76px, 11vw, 138px);
+    line-height: 0.69;
+
+    letter-spacing: -3px;
+}
+
+.hero h1 span:last-child {
+    padding-top: 14px;
+}
+
+.hero h1 .ampersand {
+    font-size: 0.43em;
+    line-height: 1.2;
+    font-style: italic;
+
+    color: var(--terracotta);
+}
+
+.hero-subtitle {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.45;
+
+    color: rgba(250, 248, 242, 0.92);
+}
+
+.hero-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+
+    margin: 25px auto 26px;
+
+    color: var(--terracotta);
+}
+
+.hero-date span {
+    font-family: var(--serif);
+    font-size: 28px;
+}
+
+.hero-date .date-month {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+.hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding-bottom: 5px;
+
+    color: var(--ivory);
+
+    border-bottom: 1px solid rgba(217, 154, 98, 0.75);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+
+    transition: gap 0.3s ease;
+}
+
+.hero-link:hover {
+    gap: 19px;
+}
+
+.hero-link span {
+    color: var(--terracotta);
+}
+
+.hero-side-text {
+    position: absolute;
+    right: 35px;
+    bottom: 50px;
+
+    writing-mode: vertical-rl;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    color: rgba(250, 248, 242, 0.75);
+}
+
+
+/* =========================================
+   6. SHARED SECTION STYLES
+========================================= */
+
+.eyebrow {
+    color: var(--terracotta);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.3px;
+}
+
+.section-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    color: var(--green);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+
+    text-align: center;
+}
+
+.section-label span {
+    width: 32px;
+    height: 1px;
+
+    background: var(--terracotta);
+}
+
+
+/* =========================================
+   7. OUR STORY
+========================================= */
+
+.story-section {
+    position: relative;
+
+    padding: 115px 8%;
+
+    background: var(--ivory);
+
+    overflow: hidden;
+}
+
+.story-container {
+    max-width: 1020px;
+
+    margin: 69px auto 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11%;
+
+    align-items: center;
+}
+
+.story-heading h2 {
+    margin-top: 20px;
+
+    font-family: var(--serif);
+    font-size: clamp(55px, 6vw, 79px);
+
+    font-weight: 400;
+    line-height: 0.97;
+
+    letter-spacing: -1.5px;
+}
+
+.story-heading h2 em {
+    color: var(--terracotta);
+    font-weight: 400;
+}
+
+.story-decoration {
+    margin-top: 27px;
+
+    color: var(--terracotta);
+    font-size: 27px;
+}
+
+.story-text {
+    max-width: 440px;
+
+    color: #6D7A70;
+
+    font-size: 13px;
+    line-height: 2.05;
+}
+
+.story-text p + p {
+    margin-top: 18px;
+}
+
+.dropcap:first-letter {
+    float: left;
+
+    padding: 7px 8px 0 0;
+
+    font-family: var(--serif);
+    font-size: 55px;
+    line-height: 0.8;
+
+    color: var(--green);
+}
+
+.signature {
+    margin-top: 25px;
+
+    font-family: var(--serif);
+    font-size: 19px;
+    font-style: italic;
+
+    color: var(--green);
+}
+
+.signature span {
+    display: block;
+
+    font-size: 30px;
+
+    color: var(--terracotta);
+}
+
+.story-leaf {
+    position: absolute;
+    left: -37px;
+    bottom: -72px;
+
+    transform: rotate(-34deg);
+
+    font-family: var(--serif);
+    font-size: 190px;
+
+    color: rgba(119, 120, 91, 0.18);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   8. INVITATION CARD SECTION
+========================================= */
+
+.invitation-section {
+    position: relative;
+
+    padding: 105px 12%;
+
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: 12%;
+
+    align-items: center;
+
+    background: var(--sage);
+
+    overflow: hidden;
+}
+
+.invitation-section::before,
+.invitation-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 550px;
+
+    border: 1px solid rgba(49, 91, 76, 0.13);
+    border-radius: 50%;
+
+    transform: rotate(32deg);
+
+    pointer-events: none;
+}
+
+.invitation-section::before {
+    left: -240px;
+    top: -140px;
+}
+
+.invitation-section::after {
+    right: -260px;
+    bottom: -210px;
+}
+
+.invitation-description {
+    max-width: 400px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-description h2 {
+    margin: 22px 0 23px;
+
+    font-family: var(--serif);
+    font-size: clamp(58px, 6vw, 82px);
+
+    font-weight: 400;
+    line-height: 0.97;
+
+    letter-spacing: -1.5px;
+}
+
+.invitation-description h2 em {
+    color: var(--terracotta);
+}
+
+.invitation-text {
+    max-width: 340px;
+
+    color: #66766B;
+
+    font-size: 13px;
+    line-height: 2;
+}
+
+.decorative-divider {
+    width: 160px;
+
+    margin: 26px 0 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    color: var(--terracotta);
+}
+
+.decorative-divider span {
+    flex: 1;
+    height: 1px;
+
+    background: rgba(49, 91, 76, 0.28);
+}
+
+.invitation-date {
+    color: var(--green);
+
+    font-size: 9px;
+    letter-spacing: 1.7px;
+    line-height: 2.2;
+}
+
+
+/* The invitation card */
+
+.invitation-card {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 340px;
+    min-height: 510px;
+
+    margin: 0 auto;
+    padding: 47px 32px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: var(--ivory);
+
+    box-shadow: 0 25px 55px rgba(36, 72, 60, 0.13);
+}
+
+.card-inner-border {
+    position: absolute;
+    inset: 13px;
+
+    border: 1px solid rgba(173, 139, 88, 0.7);
+
+    pointer-events: none;
+}
+
+.card-eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.8px;
+
+    color: var(--muted);
+}
+
+.invitation-card h3 {
+    margin: 26px 0;
+
+    font-family: var(--serif);
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 0.77;
+
+    color: var(--green);
+}
+
+.invitation-card h3 span {
+    display: inline-block;
+
+    padding: 13px 0;
+
+    font-size: 31px;
+    font-style: italic;
+
+    color: var(--terracotta);
+}
+
+.card-invitation-text {
+    font-size: 8px;
+    letter-spacing: 1.8px;
+    line-height: 2;
+
+    color: #7A887E;
+}
+
+.card-divider {
+    margin: 17px 0;
+
+    color: var(--terracotta);
+}
+
+.card-day {
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    color: var(--green);
+}
+
+.card-date {
+    font-family: var(--serif);
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 3px;
+
+    color: var(--green);
+}
+
+.card-venue {
+    margin-top: 16px;
+
+    font-size: 7px;
+    letter-spacing: 1.2px;
+    line-height: 2;
+
+    color: #7A887E;
+}
+
+.card-leaf {
+    position: absolute;
+    top: 21px;
+    right: 25px;
+
+    transform: rotate(-45deg);
+
+    font-family: var(--serif);
+    font-size: 75px;
+    line-height: 1;
+
+    color: rgba(119, 120, 91, 0.35);
+}
+
+.invitation-side-note {
+    position: absolute;
+    top: 50%;
+    right: 26px;
+
+    writing-mode: vertical-rl;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    color: rgba(49, 91, 76, 0.55);
+}
+
+
+/* =========================================
+   9. WEDDING DETAILS
+========================================= */
+
+.details-section {
+    padding: 115px 8%;
+
+    text-align: center;
+
+    background: var(--ivory);
+}
+
+.section-title {
+    margin-top: 20px;
+
+    font-family: var(--serif);
+    font-size: clamp(58px, 7vw, 83px);
+
+    font-weight: 400;
+    line-height: 1;
+}
+
+.section-title em {
+    color: var(--terracotta);
+}
+
+.section-description {
+    margin-top: 14px;
+
+    color: #7A887E;
+
+    font-size: 13px;
+}
+
+.details-container {
+    max-width: 1050px;
+
+    margin: 57px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.detail-card {
+    min-height: 275px;
+
+    padding: 32px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--line);
+
+    background: rgba(255, 255, 255, 0.24);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 30px rgba(49, 91, 76, 0.07);
+}
+
+.detail-number {
+    margin-bottom: 15px;
+
+    font-family: var(--serif);
+    font-size: 22px;
+
+    color: var(--terracotta);
+}
+
+.detail-card h3 {
+    margin: 5px 0 9px;
+
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.detail-card > p:not(.eyebrow) {
+    font-size: 12px;
+}
+
+.detail-note {
+    margin-top: 3px;
+
+    color: #8C998F;
+
+    font-size: 11px !important;
+}
+
+.featured-card {
+    background: var(--green);
+    color: var(--ivory);
+
+    border-color: var(--green);
+}
+
+.featured-card .detail-note {
+    color: #D2DDD4;
+}
+
+.location-link {
+    margin-top: 22px;
+
+    padding-bottom: 5px;
+
+    border-bottom: 1px solid var(--terracotta);
+
+    color: var(--ivory);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+
+/* =========================================
+   10. COUNTDOWN
+========================================= */
+
+.countdown-section {
+    position: relative;
+
+    padding: 105px 5%;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    background: var(--green);
+    color: var(--ivory);
+}
+
+.countdown-content {
+    position: relative;
+    z-index: 2;
+}
+
+.countdown-content h2 {
+    margin: 17px 0 43px;
+
+    font-family: var(--serif);
+    font-size: clamp(43px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.countdown-content h2 em {
+    color: var(--terracotta);
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: clamp(15px, 4vw, 48px);
+}
+
+.time-box {
+    min-width: 75px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.time-box span {
+    font-family: var(--serif);
+    font-size: clamp(45px, 6vw, 70px);
+    font-weight: 400;
+    line-height: 1.1;
+
+    color: var(--ivory);
+}
+
+.time-box p {
+    margin-top: 11px;
+
+    color: #D5C8B3;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.timer-colon {
+    margin-top: -19px;
+
+    font-family: var(--serif);
+    font-size: 40px;
+    font-style: normal;
+
+    color: var(--terracotta);
+}
+
+.countdown-note {
+    margin-top: 37px;
+
+    color: #D5C8B3;
+
+    font-size: 8px;
+    letter-spacing: 3px;
+}
+
+.countdown-decoration {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-family: var(--serif);
+    font-size: 240px;
+    line-height: 1;
+
+    color: rgba(232, 239, 232, 0.08);
+
+    pointer-events: none;
+}
+
+.countdown-left {
+    left: -45px;
+}
+
+.countdown-right {
+    right: -45px;
+
+    transform: translateY(-50%) scaleX(-1);
+}
+
+
+/* =========================================
+   11. RSVP
+========================================= */
+
+.rsvp-section {
+    position: relative;
+
+    padding: 115px 9%;
+
+    background: var(--sage);
+
+    overflow: hidden;
+}
+
+.rsvp-container {
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: 13%;
+
+    align-items: center;
+}
+
+.rsvp-description h2 {
+    margin: 22px 0 25px;
+
+    font-family: var(--serif);
+    font-size: clamp(62px, 7vw, 85px);
+    font-weight: 400;
+    line-height: 0.94;
+
+    letter-spacing: -1.5px;
+}
+
+.rsvp-description h2 em {
+    color: var(--terracotta);
+}
+
+.rsvp-description > p:not(.eyebrow) {
+    max-width: 350px;
+
+    color: #66766B;
+
+    font-size: 13px;
+    line-height: 2;
+}
+
+.rsvp-signature {
+    margin-top: 26px;
+
+    font-family: var(--serif);
+    font-size: 21px;
+    font-style: italic;
+
+    color: var(--green);
+}
+
+.rsvp-decoration {
+    position: absolute;
+    top: 25px;
+    right: 6%;
+
+    font-size: 70px;
+
+    color: rgba(119, 120, 91, 0.2);
+}
+
+
+/* RSVP form */
+
+.rsvp-form {
+    padding: 38px;
+
+    background: var(--ivory);
+
+    border: 1px solid rgba(49, 91, 76, 0.15);
+
+    box-shadow: 0 20px 50px rgba(49, 91, 76, 0.06);
+}
+
+.rsvp-form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--green);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.rsvp-form label span {
+    color: #9BA59D;
+    font-weight: 400;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+    width: 100%;
+
+    margin-bottom: 22px;
+    padding: 12px 13px;
+
+    border: 1px solid #DCE3DA;
+    border-radius: 0;
+
+    outline: none;
+
+    background: transparent;
+    color: var(--ink);
+
+    font-family: var(--sans);
+    font-size: 12px;
+
+    transition: border-color 0.3s ease;
+}
+
+.rsvp-form input,
+.rsvp-form select {
+    min-height: 46px;
+}
+
+.rsvp-form textarea {
+    min-height: 95px;
+    resize: vertical;
+}
+
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+    border-color: var(--green);
+}
+
+.rsvp-form input::placeholder,
+.rsvp-form textarea::placeholder {
+    color: #A2AAA3;
+}
+
+.rsvp-form select {
+    cursor: pointer;
+}
+
+.submit-button {
+    width: 100%;
+
+    padding: 15px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid var(--green);
+
+    background: var(--green);
+    color: var(--ivory);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.submit-button span {
+    color: var(--terracotta);
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background: var(--green-deep);
+}
+
+.form-message {
+    margin-top: 13px;
+
+    color: #7A887E;
+
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   12. CLOSING SECTION
+========================================= */
+
+.closing-section {
+    position: relative;
+
+    min-height: 470px;
+
+    padding: 90px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    background: var(--green);
+    color: var(--ivory);
+}
+
+.closing-frame {
+    position: absolute;
+    inset: 18px;
+
+    border: 1px solid rgba(250, 248, 242, 0.3);
+
+    pointer-events: none;
+}
+
+.closing-frame::after {
+    content: "";
+
+    position: absolute;
+    inset: 7px;
+
+    border: 1px solid rgba(250, 248, 242, 0.12);
+}
+
+.closing-section > *:not(.closing-frame) {
+    position: relative;
+    z-index: 1;
+}
+
+.closing-section h2 {
+    margin-top: 21px;
+
+    font-family: var(--serif);
+    font-size: clamp(62px, 8vw, 92px);
+    font-weight: 400;
+    line-height: 0.95;
+}
+
+.closing-section h2 em {
+    color: var(--terracotta);
+}
+
+.closing-divider {
+    margin: 25px 0 18px;
+
+    color: var(--terracotta);
+}
+
+.closing-names {
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.closing-date {
+    margin-top: 7px;
+
+    color: #D5C8B3;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   13. FOOTER
+========================================= */
+
+.footer {
+    min-height: 100px;
+
+    padding: 28px 6.5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    background: var(--ivory);
+}
+
+.footer .logo {
+    font-size: 30px;
+}
+
+.footer > p {
+    color: #7A887E;
+    font-size: 11px;
+}
+
+.footer .copyright {
+    font-size: 9px;
+}
+
+
+/* =========================================
+   14. ANIMATIONS
+========================================= */
+
+@keyframes heroReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   15. TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .story-section,
+    .details-section {
+        padding: 90px 6%;
+    }
+
+    .invitation-section {
+        padding: 90px 8%;
+        gap: 8%;
+    }
+
+    .invitation-side-note {
+        display: none;
+    }
+
+    .rsvp-section {
+        padding: 90px 6%;
+    }
+
+    .rsvp-container {
+        gap: 7%;
+    }
+
+    .rsvp-form {
+        padding: 28px;
+    }
+
+    .footer {
+        flex-wrap: wrap;
+    }
+}
+
+
+/* =========================================
+   16. MOBILE RESPONSIVE
+========================================= */
+
+    /* Hero */
+
+    .hero {
+        min-height: 680px;
+        height: calc(100svh - 74px);
+        max-height: 820px;
+    }
+
+    .hero::before {
+        background-position: 54% center;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(24, 53, 42, 0.55),
+                rgba(24, 53, 42, 0.48) 45%,
+                rgba(24, 53, 42, 0.72)
+            );
+    }
+
+    .hero-frame {
+        inset: 12px;
+    }
+
+    .hero-frame::after {
+        inset: 5px;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 35px 20px;
+    }
+
+    .hero-eyebrow {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    .hero-intro {
+        margin-top: 28px;
+        font-size: 19px;
+    }
+
+    .hero h1 {
+        margin: 30px 0;
+
+        font-size: clamp(78px, 19vw, 112px);
+        letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .hero-date {
+        margin: 24px auto;
+    }
+
+    .hero-side-text {
+        right: 20px;
+        bottom: 27px;
+
+        font-size: 7px;
+        letter-spacing: 1.4px;
+    }
+
+
+    /* Story */
+
+    .story-section {
+        padding: 80px 8%;
+    }
+
+    .section-label {
+        gap: 9px;
+        font-size: 8px;
+        letter-spacing: 1.4px;
+    }
+
+    .section-label span {
+        width: 20px;
+    }
+
+    .story-container {
+        margin-top: 48px;
+
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .story-heading h2 {
+        font-size: clamp(59px, 14vw, 75px);
+    }
+
+    .story-decoration {
+        margin-top: 18px;
+    }
+
+    .story-text {
+        font-size: 13px;
+    }
+
+    .story-leaf {
+        left: auto;
+        right: -38px;
+        bottom: -70px;
+
+        font-size: 145px;
+    }
+
+
+    /* Invitation */
+
+    .invitation-section {
+        padding: 80px 8%;
+
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .invitation-description h2 {
+        font-size: clamp(60px, 14vw, 76px);
+    }
+
+    .invitation-text {
+        max-width: 100%;
+    }
+
+    .invitation-card {
+        max-width: 330px;
+        min-height: 490px;
+        padding: 40px 25px;
+    }
+
+
+    /* Details */
+
+    .details-section {
+        padding: 80px 7%;
+    }
+
+    .section-title {
+        font-size: 65px;
+    }
+
+    .section-description {
+        max-width: 290px;
+        margin: 14px auto 0;
+    }
+
+    .details-container {
+        margin-top: 40px;
+
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .detail-card {
+        min-height: 245px;
+        padding: 28px 18px;
+    }
+
+    .detail-card h3 {
+        font-size: 35px;
+    }
+
+
+    /* Countdown */
+
+    .countdown-section {
+        padding: 80px 15px;
+    }
+
+    .countdown-content h2 {
+        max-width: 350px;
+        margin: 20px auto 35px;
+
+        font-size: clamp(39px, 10vw, 52px);
+    }
+
+    .countdown-timer {
+        gap: clamp(6px, 2vw, 13px);
+    }
+
+    .time-box {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .time-box span {
+        font-size: clamp(32px, 8vw, 45px);
+    }
+
+    .time-box p {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .timer-colon {
+        margin-top: -18px;
+        font-size: 25px;
+    }
+
+    .countdown-decoration {
+        font-size: 110px;
+    }
+
+    .countdown-left {
+        left: -38px;
+    }
+
+    .countdown-right {
+        right: -38px;
+    }
+
+
+    /* RSVP */
+
+    .rsvp-section {
+        padding: 80px 7%;
+    }
+
+    .rsvp-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .rsvp-description h2 {
+        font-size: 72px;
+    }
+
+    .rsvp-description > p:not(.eyebrow) {
+        max-width: 360px;
+    }
+
+    .rsvp-form {
+        padding: 24px 20px;
+    }
+
+    .rsvp-decoration {
+        top: 15px;
+        right: 5%;
+
+        font-size: 45px;
+    }
+
+
+    /* Closing */
+
+    .closing-section {
+        min-height: 420px;
+        padding: 80px 20px;
+    }
+
+    .closing-frame {
+        inset: 12px;
+    }
+
+    .closing-section h2 {
+        font-size: clamp(63px, 15vw, 78px);
+    }
+
+
+    
+
+/* =========================
+FOOTER
+========================= */
+
+.footer {
+background: var(--green-deep);
+color: var(--ivory);
+padding: 60px 8% 25px;
+}
+
+/* Main Footer Content */
+
+.footer-content {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+padding-bottom: 45px;
+}
+
+/* Brand Logo */
+
+.footer-logo {
+display: inline-block;
+font-family: var(--serif);
+font-size: 48px;
+font-weight: 500;
+letter-spacing: -1.5px;
+line-height: 1;
+color: var(--ivory);
+text-decoration: none;
+}
+
+.footer-logo span {
+color: var(--terracotta);
+}
+
+/* Tagline */
+
+.footer-tagline {
+margin-top: 15px;
+font-family: "DM Sans", sans-serif;
+font-size: 11px;
+font-weight: 400;
+letter-spacing: 1.2px;
+line-height: 1.8;
+color: var(--sage-dark);
+}
+
+/* Social Links */
+.footer-socials {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 16px;
+margin-top: 30px;
+}
+
+.footer-socials a {
+width: 42px;
+height: 42px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+
+border: 1px solid var(--ivory);
+border-radius: 50%;
+
+background: transparent;
+color: var(--ivory);
+font-size: 16px;
+text-decoration: none;
+box-sizing: border-box;
+
+transition: background 0.3s ease,
+            color 0.3s ease,
+            transform 0.3s ease;
+
+
+}
+
+.footer-socials a:hover {
+background: var(--ivory);
+color: var(--green-deep);
+transform: translateY(-3px);
+}
+
+
+
+
+
+
+/* Bottom Bar */
+
+.footer-bottom {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+padding-top: 22px;
+border-top: 1px solid rgba(250, 248, 242, 0.2);
+}
+
+.footer-bottom p {
+margin: 0;
+font-family: "DM Sans", sans-serif;
+font-size: 10px;
+font-weight: 400;
+line-height: 1.8;
+letter-spacing: 0.3px;
+color: var(--sage-dark);
+}
+
+/* Responsive Footer */
+
+@media (max-width: 600px) {
+
+
+.footer {
+    padding: 45px 6% 22px;
+}
+
+.footer-logo {
+    font-size: 42px;
+}
+
+.footer-tagline {
+    max-width: 260px;
+    font-size: 10px;
+}
+
+.footer-socials {
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.footer-socials a {
+    width: 38px;
+     height: 38px;
+      font-size: 15px;
+   
+    letter-spacing: 0.8px;
+}
+
+.footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+}
+
+.footer-bottom p {
+    font-size: 9px;
+}
+
+
+}
+
+
+/* =========================================
+   17. SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 73px;
+    }
+
+    .hero-eyebrow {
+        font-size: 7px;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-side-text {
+        right: 16px;
+        font-size: 6px;
+    }
+
+    .section-label {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .section-label span {
+        width: 15px;
+    }
+
+    .countdown-timer {
+        gap: 5px;
+    }
+
+    .time-box span {
+        font-size: 30px;
+    }
+
+    .time-box p {
+        font-size: 6px;
+        letter-spacing: 0.6px;
+    }
+
+    .timer-colon {
+        font-size: 20px;
+    }
+
+    .rsvp-form {
+        padding: 20px 15px;
+    }
+
+}
+
+
+/* =========================================
+   18. ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
